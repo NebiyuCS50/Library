@@ -17,11 +17,6 @@ function addBookToLibrary(title, author, page, read) {
 }
 console.log(myLibrary);
 
-addBookToLibrary("The Hobbit by J.R.R.", "Tolkien", "295 pages", true);
-addBookToLibrary("The Hobbit by J.R.R.", "Tolkien", "295 pages", true);
-addBookToLibrary("The Hobbit by J.R.R.", "Tolkien", "295 pages", true);
-addBookToLibrary("The Hobbit by J.R.R.", "Tolkien", "295 pages", true);
-
 //display Books
 
 function displayBooks() {
@@ -145,6 +140,13 @@ btn.addEventListener("click", function () {
     e.preventDefault();
     const bookTitle = titleInp.value;
     const bookAuthor = authInp.value;
+    const bookPages = pageInp.value + " pages";
+    const bookRead =
+      form.querySelector('input[name="radio"]:checked').value === "true";
+    const newBook = new Book(bookTitle, bookAuthor, bookPages, bookRead);
+    myLibrary.push(newBook);
+    displayBooks();
+    formContainer.remove();
   });
 });
 
