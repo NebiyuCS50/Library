@@ -11,16 +11,10 @@ function Book(title, author, page, read) {
   this.read = read ? "Read" : "Not Read";
 }
 
-function addBookToLibrary(title, author, page, read) {
-  const newBook = new Book(title, author, page, read);
-  myLibrary.push(newBook);
-}
-console.log(myLibrary);
-
 //display Books
-
 function displayBooks() {
   const content = document.querySelector(".content");
+  content.textContent = "";
   myLibrary.forEach((book) => {
     const row = document.createElement("div");
     row.classList.add("table-row");
@@ -55,6 +49,7 @@ const btn = document.querySelector(".btn");
 btn.addEventListener("click", function () {
   const formContainer = document.createElement("div");
   formContainer.classList.add("form-container");
+  if (document.querySelector(".form-container")) return;
 
   const logo = document.createElement("div");
   logo.classList.add("logo-container");
@@ -101,13 +96,13 @@ btn.addEventListener("click", function () {
   inputRadioTrue.name = "radio";
   inputRadioTrue.checked = "";
   const spanRadioTrue = document.createElement("span");
-  spanRadioTrue.textContent = "true";
+  spanRadioTrue.textContent = "Yes";
   const labelRadioFalse = document.createElement("label");
   const inputRadioFalse = document.createElement("input");
   inputRadioFalse.type = "radio";
   inputRadioFalse.name = "radio";
   const spanRadioFalse = document.createElement("span");
-  spanRadioFalse.textContent = "false";
+  spanRadioFalse.textContent = "No";
   myDict.appendChild(containerRadio);
   containerRadio.appendChild(labelRadioTrue);
   labelRadioTrue.appendChild(inputRadioTrue);
@@ -141,13 +136,16 @@ btn.addEventListener("click", function () {
     const bookTitle = titleInp.value;
     const bookAuthor = authInp.value;
     const bookPages = pageInp.value + " pages";
-    const bookRead =
-      form.querySelector('input[name="radio"]:checked').value === "true";
+    let bookRead;
+    if (inputRadioTrue.checked) {
+      bookRead = true;
+    } else if (inputRadioFalse.checked) {
+      bookRead = false;
+    }
     const newBook = new Book(bookTitle, bookAuthor, bookPages, bookRead);
     myLibrary.push(newBook);
-    displayBooks();
+    console.log(myLibrary);
     formContainer.remove();
+    displayBooks();
   });
 });
-
-displayBooks();
