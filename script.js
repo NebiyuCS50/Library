@@ -11,6 +11,15 @@ function Book(title, author, page, read) {
   this.read = read ? "Read" : "Not Read";
 }
 
+//remove button
+function deleteBook(id) {
+  const index = myLibrary.findIndex((book) => book.id === id);
+  if (index !== -1) {
+    myLibrary.splice(index, 1);
+  }
+  displayBooks();
+}
+
 //display Books
 function displayBooks() {
   const content = document.querySelector(".content");
@@ -34,11 +43,22 @@ function displayBooks() {
     const readDiv = document.createElement("div");
     readDiv.textContent = book.read;
 
+    //remove btn
+    const btn_remove = document.createElement("button");
+    btn_remove.classList.add("btn-remove");
+    btn_remove.textContent = "Remove";
+    btn_remove.setAttribute("data-id", book.id);
+    btn_remove.addEventListener("click", function () {
+      const bookId = this.getAttribute("data-id");
+      deleteBook(bookId);
+    });
+
     // Append each column to the row
     row.appendChild(titleDiv);
     row.appendChild(authorDiv);
     row.appendChild(pageDiv);
     row.appendChild(readDiv);
+    row.appendChild(btn_remove);
     // Append the row to the table
     content.appendChild(row);
   });
