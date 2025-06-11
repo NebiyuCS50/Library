@@ -8,7 +8,7 @@ function Book(title, author, page, read) {
   this.title = title;
   this.author = author;
   this.page = page;
-  this.read = read ? "Read" : "Not Read";
+  this.read = read ? "Finished" : "Not Finished";
 }
 
 //remove button
@@ -52,12 +52,28 @@ function displayBooks() {
       const bookId = this.getAttribute("data-id");
       deleteBook(bookId);
     });
+    //btn status
+    const btn_status = document.createElement("button");
+    btn_status.classList.add("btn-status");
+    btn_status.textContent = "Change Status";
+    btn_status.addEventListener("click", function () {
+      if (book.read == true) {
+        book.read = "Not Finished";
+      } else {
+        book.read = "Finished";
+      }
+      content.textContent = ""; //
+      displayBooks();
+    });
 
     // Append each column to the row
     row.appendChild(titleDiv);
     row.appendChild(authorDiv);
     row.appendChild(pageDiv);
     row.appendChild(readDiv);
+    if (book.read == "Not Finished") {
+      row.appendChild(btn_status);
+    }
     row.appendChild(btn_remove);
     // Append the row to the table
     content.appendChild(row);
