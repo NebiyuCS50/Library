@@ -13,7 +13,7 @@ body {
 .table-header,
 .table-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 200px; /* 4 equal columns */
+  grid-template-columns: 1fr 1fr 1fr 1fr 150px 100px; /* 4 equal columns */
   gap: 10px;
   padding: 10px;
   border-bottom: 1px solid #ccc;
@@ -29,16 +29,16 @@ button {
   display: block;
   margin-left: auto;
   margin-bottom: 10px;
-  background-color: white;
-  color: black;
+  background-color: rgb(100, 70, 252);
+  color: white;
   border-radius: 10em;
   font-size: 12px;
   font-weight: 600;
   padding: 1em 2em;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  border: 1px solid black;
-  box-shadow: 0 0 0 0 black;
+  border: 1px solid rgb(100, 70, 252);
+  box-shadow: 0 0 0 0 rgb(100, 70, 252);
 }
 
 button:hover {
@@ -229,6 +229,28 @@ label:last-child span {
 }
 
 .btn-remove:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 black;
+}
+.btn-status {
+  margin-top: -4px;
+  background-color: rgb(70, 252, 100);
+  color: white;
+  border-radius: 10em;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1em 2em;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgb(70, 252, 100);
+  box-shadow: 0 0 0 0 black;
+}
+.btn-status:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 black;
+}
+
+.btn-status:active {
   transform: translateY(2px) translateX(1px);
   box-shadow: 0 0 0 0 black;
 }
