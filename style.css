@@ -13,7 +13,7 @@ body {
 .table-header,
 .table-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  grid-template-columns: 1fr 1fr 1fr 1fr 200px; /* 4 equal columns */
   gap: 10px;
   padding: 10px;
   border-bottom: 1px solid #ccc;
@@ -208,4 +208,27 @@ label:first-child span {
 
 label:last-child span {
   border-radius: 0 0.375em 0.375em 0;
+}
+.btn-remove {
+  margin-top: -4px;
+  background-color: rgb(252, 70, 100);
+  color: white;
+  border-radius: 10em;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1em 2em;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgb(252, 70, 100);
+  box-shadow: 0 0 0 0 black;
+}
+
+.btn-remove:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 black;
+}
+
+.btn-remove:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 black;
 }
