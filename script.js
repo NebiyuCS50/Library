@@ -1,5 +1,16 @@
 const myLibrary = [];
 
+function saveProjectsToLocalStorage() {
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+function loadProjectsFromLocalStorage() {
+  const data = localStorage.getItem("myLibrary");
+  if (data) {
+    const parsed = JSON.parse(data);
+    myLibrary.length = 0;
+    parsed.forEach((p) => myLibrary.push(p));
+  }
+}
 class Book {
   constructor(title, author, page, read) {
     this.id = crypto.randomUUID();
@@ -16,11 +27,12 @@ class Library {
     const index = myLibrary.findIndex((book) => book.id === id);
     if (index !== -1) {
       myLibrary.splice(index, 1);
+      saveProjectsToLocalStorage();
     }
+
     const display = new Display();
     display.displayBooks();
   }
-  // displayBooks();
 }
 
 //display Books
@@ -68,6 +80,7 @@ class Display {
           book.read = "Finished";
         }
         content.textContent = ""; //
+        saveProjectsToLocalStorage();
         const display = new Display();
         display.displayBooks();
       });
@@ -186,9 +199,13 @@ btn.addEventListener("click", function () {
     }
     const newBook = new Book(bookTitle, bookAuthor, bookPages, bookRead);
     myLibrary.push(newBook);
+    saveProjectsToLocalStorage();
     console.log(myLibrary);
     formContainer.remove();
     const display = new Display();
     display.displayBooks();
   });
 });
+loadProjectsFromLocalStorage();
+const display = new Display();
+display.displayBooks();
