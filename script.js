@@ -124,6 +124,18 @@ btn.addEventListener("click", function () {
   titleInp.name = "bookTitle";
   titleInp.placeholder = "Enter book title";
   titleInp.required = true;
+  titleInp.addEventListener("input", function () {
+    if (titleInp.validity.valueMissing) {
+      titleInp.setCustomValidity("Please enter a book title.");
+    } else {
+      titleInp.setCustomValidity("");
+    }
+  });
+  titleInp.addEventListener("invalid", function () {
+    if (titleInp.validity.valueMissing) {
+      titleInp.setCustomValidity("Please enter a book title.");
+    }
+  });
   const bookAuthor = document.createElement("label");
   bookAuthor.textContent = "Book Author";
   const authInp = document.createElement("input");
@@ -132,6 +144,18 @@ btn.addEventListener("click", function () {
   authInp.name = "bookAuthor";
   authInp.placeholder = "Enter book author";
   authInp.required = true;
+  authInp.addEventListener("input", function () {
+    if (authInp.validity.valueMissing) {
+      authInp.setCustomValidity("Please enter a valid book title.");
+    } else {
+      authInp.setCustomValidity("");
+    }
+  });
+  authInp.addEventListener("invalid", function () {
+    if (authInp.validity.valueMissing) {
+      authInp.setCustomValidity("Please enter a valid book author.");
+    }
+  });
   const bookPages = document.createElement("label");
   bookPages.textContent = "Book Page";
   const pageInp = document.createElement("input");
@@ -140,6 +164,18 @@ btn.addEventListener("click", function () {
   pageInp.name = "bookPage";
   pageInp.placeholder = "Enter book page";
   pageInp.required = true;
+  pageInp.addEventListener("input", function () {
+    if (pageInp.validity.valueMissing) {
+      pageInp.setCustomValidity("Please enter a valid page number.");
+    } else {
+      pageInp.setCustomValidity("");
+    }
+  });
+  pageInp.addEventListener("invalid", function () {
+    if (pageInp.validity.valueMissing) {
+      pageInp.setCustomValidity("Please enter a valid page number.");
+    }
+  });
   const bookRead = document.createElement("label");
   bookRead.textContent = "Did you read it ?";
   const myDict = document.createElement("div");
